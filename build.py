@@ -36,8 +36,8 @@ def panel(item,n):
  image,box,time,text,alt=item
  if box:
   x,y,w,h=box
-  art=f'<svg role="img" aria-labelledby="art-{n}" viewBox="{x} {y} {w} {h}"><title id="art-{n}">{escape(alt)}</title><image href="assets/{image}.png" width="1536" height="1024" /></svg>'
- else: art=f'<img src="assets/{image}.png" alt="{escape(alt)}" '+('fetchpriority="high"' if n==0 else 'loading="lazy" decoding="async"')+'>'
+  art=f'<svg role="img" aria-labelledby="art-{n}" viewBox="{x} {y} {w} {h}"><title id="art-{n}">{escape(alt)}</title><image href="assets/{image}.webp" width="1536" height="1024" /></svg>'
+ else: art=f'<img src="assets/{image}.webp" alt="{escape(alt)}" '+('fetchpriority="high"' if n==0 else 'loading="lazy" decoding="async"')+'>'
  return f'<figure class="panel"><div class="art">{art}</div><figcaption><span class="time">{escape(time)}</span><p>{escape(text)}</p></figcaption></figure>'
 n=0;sections=[]
 for ci,(name,groups) in enumerate(chapters):
@@ -47,7 +47,7 @@ for ci,(name,groups) in enumerate(chapters):
   for item in items: cards.append(panel(item,n));n+=1
   prefix = suffix = ''
   if treatment == 'memory':
-   anchor = '<svg role="img" aria-label="He remains alone in his cold room" viewBox="768 8 760 487"><image href="assets/sunday-flashbacks.png" width="1536" height="1024" /></svg>'
+   anchor = '<svg role="img" aria-label="He remains alone in his cold room" viewBox="768 8 760 487"><image href="assets/sunday-flashbacks.webp" width="1536" height="1024" /></svg>'
    prefix = '<div class="reality-anchor">'+anchor+'<span class="thought-trail" aria-hidden="true">○ · · ·</span></div>'
    cue = 'My mind wanders back to the witty woman in my beer-hall  fantasy.'
    returning = 'A shiver. It’s so cold and the damp air.'
@@ -56,6 +56,6 @@ for ci,(name,groups) in enumerate(chapters):
    suffix = '<div class="return-to-room"><span class="thought-trail" aria-hidden="true">· · · ○</span>'+anchor+'<p>'+escape(returning)+'</p></div>'
   content.append(f'<div class="sequence {treatment}">'+prefix+''.join(cards)+suffix+'</div>')
  sections.append(f'<section id="{name.lower()}" class="chapter"><header class="chapter-title"><span>0{ci+1}</span><h2>{name}</h2></header>'+''.join(content)+'</section>')
-page='''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#eeeae2"><meta name="description" content="Friday — a story in images and fragments."><title>Friday — Bande Dessinée</title><link rel="preload" as="image" href="assets/rain-walk.png"><link rel="stylesheet" href="style.css"></head><body><div class="progress" aria-hidden="true"><span id="progress-fill"></span></div><header class="masthead"><a class="brand" href="#friday">Friday</a><nav aria-label="Chapters">'''+''.join(f'<a href="#{name.lower()}">{name}</a>' for name,_ in chapters)+'''</nav></header><main>'''+''.join(sections)+'''</main><footer><a href="#friday">Friday</a><span>A story in images &amp; fragments</span></footer><script src="script.js" defer></script></body></html>'''
+page='''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#eeeae2"><meta name="description" content="Friday — a story in images and fragments."><title>Friday — Bande Dessinée</title><link rel="preload" as="image" href="assets/rain-walk.webp"><link rel="stylesheet" href="style.css"></head><body><div class="progress" aria-hidden="true"><span id="progress-fill"></span></div><header class="masthead"><a class="brand" href="#friday">Friday</a><nav aria-label="Chapters">'''+''.join(f'<a href="#{name.lower()}">{name}</a>' for name,_ in chapters)+'''</nav></header><main>'''+''.join(sections)+'''</main><footer><a href="#friday">Friday</a><span>A story in images &amp; fragments</span></footer><script src="script.js" defer></script></body></html>'''
 (ROOT/'dist/index.html').write_text(page)
 print(f'Built {n} individually captioned panels in {len(chapters)} chapters')
