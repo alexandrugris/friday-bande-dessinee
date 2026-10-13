@@ -38,7 +38,7 @@ def panel(item,n):
   x,y,w,h=box
   art=f'<svg role="img" aria-labelledby="art-{n}" viewBox="{x} {y} {w} {h}"><title id="art-{n}">{escape(alt)}</title><image href="assets/{image}.webp" width="1536" height="1024" /></svg>'
  else: art=f'<img src="assets/{image}.webp" alt="{escape(alt)}" '+('fetchpriority="high"' if n==0 else 'loading="lazy" decoding="async"')+'>'
- color_class = ' art-color' if image in {'lovers-become-trees-color', 'later-color'} else ''
+ color_class = ' art-color' if image == 'later-color' else ''
  return f'<figure class="panel"><div class="art{color_class}">{art}</div><figcaption><span class="time">{escape(time)}</span><p>{escape(text)}</p></figcaption></figure>'
 n=0;sections=[]
 for ci,(name,groups) in enumerate(chapters):

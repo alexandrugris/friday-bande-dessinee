@@ -93,7 +93,7 @@ h1, h2, p, figure { margin: 0; }
 .absence { max-width: 930px; gap: 85px; padding: 40px 0; }
 .absence .panel:last-child { margin-top: 30px; }
 .absence .panel:last-child p { font-style: italic; }
-#later { padding-bottom: 70px; }
+#later { padding-bottom: 70px; background: #f2f0e9; }
 #later .chapter-title { border: 0; }
 #later .sequence { max-width: 860px; }
 footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 26px clamp(24px, 4vw, 70px); background: #1d1d1d; color: #ececec; }
