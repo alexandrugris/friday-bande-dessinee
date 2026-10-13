@@ -61,6 +61,7 @@ h1, h2, p, figure { margin: 0; }
 .panel { min-width: 0; }
 .art { overflow: hidden; padding: 9px; border: 1px solid #c9c9c9; background: #f4f4f4; box-shadow: 7px 9px 0 rgb(0 0 0 / 6%); }
 .art img, .art svg { display: block; width: 100%; height: auto; filter: grayscale(1) contrast(1.08); }
+.art-color img, .art-color svg { filter: none; }
 .panel figcaption { padding: 18px 4px 0; }
 .time { display: block; min-height: 12px; color: #494949; font: 10px var(--utility); letter-spacing: .14em; text-transform: uppercase; }
 .time:not(:empty)::before { content: ''; display: inline-block; width: 6px; height: 6px; margin: 0 12px 1px 0; border: 1px solid var(--ink); border-radius: 50%; }
