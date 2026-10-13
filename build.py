@@ -56,6 +56,23 @@ for ci,(name,groups) in enumerate(chapters):
    suffix = '<div class="return-to-room"><span class="thought-trail" aria-hidden="true">· · · ○</span>'+anchor+'<p>'+escape(returning)+'</p></div>'
   content.append(f'<div class="sequence {treatment}">'+prefix+''.join(cards)+suffix+'</div>')
  sections.append(f'<section id="{name.lower()}" class="chapter"><header class="chapter-title"><span>0{ci+1}</span><h2>{name}</h2></header>'+''.join(content)+'</section>')
-page='''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#eeeae2"><meta name="description" content="Friday — a story in images and fragments."><title>Friday — Bande Dessinée</title><link rel="preload" as="image" href="assets/rain-walk.webp"><link rel="stylesheet" href="style.css"></head><body><div class="progress" aria-hidden="true"><span id="progress-fill"></span></div><header class="masthead"><a class="brand" href="#friday">Friday</a><nav aria-label="Chapters">'''+''.join(f'<a href="#{name.lower()}">{name}</a>' for name,_ in chapters)+'''</nav></header><main>'''+''.join(sections)+'''</main><footer><a href="#friday">Friday</a><span>A story in images &amp; fragments</span></footer><script src="script.js" defer></script></body></html>'''
+hero_deck = 'Undefined gray days under an undefined gray sky.'
+assert hero_deck in SOURCE
+hero = f'''<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-copy">
+    <p class="hero-kicker"><span class="hand-drawn-line" aria-hidden="true"></span>A story in four movements</p>
+    <h1 id="hero-title">Friday<span class="title-period">.</span></h1>
+    <p class="hero-deck">{hero_deck}</p>
+    <div class="hero-bottom">
+      <a class="read-link" href="#friday">Begin reading<span class="arrow" aria-hidden="true">↘</span></a>
+      <span class="read-time">{n} illustrated panels</span>
+    </div>
+  </div>
+  <figure class="hero-art">
+    <img src="assets/hero-winter-room.png" alt="A solitary figure stands at a window during a blizzard, inside a dim apartment." fetchpriority="high">
+    <figcaption>Fig. 01 <span aria-hidden="true">—</span> Winter in the room</figcaption>
+  </figure>
+</section>'''
+page='''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f5f5f5"><meta name="description" content="Friday — a story in images and fragments."><title>Friday — Bande Dessinée</title><link rel="preload" as="image" href="assets/hero-winter-room.png"><link rel="stylesheet" href="style.css"></head><body><div class="progress" aria-hidden="true"><span id="progress-fill"></span></div><header class="masthead"><a class="brand" href="#top" aria-label="Friday, back to top">F<span>/</span></a><span class="header-caption">Bande dessinée</span><nav aria-label="Chapters">'''+''.join(f'<a href="#{name.lower()}"'+(' class="active" aria-current="location"' if ci==0 else '')+f'><span class="nav-index">0{ci+1}</span><span class="nav-label">{name}</span></a>' for ci,(name,_) in enumerate(chapters))+'''</nav></header><main id="top">'''+hero+''.join(sections)+'''</main><footer><a href="#top">Friday</a><span>A story in images &amp; fragments</span></footer><script src="script.js" defer></script></body></html>'''
 (ROOT/'dist/index.html').write_text(page)
 print(f'Built {n} individually captioned panels in {len(chapters)} chapters')
